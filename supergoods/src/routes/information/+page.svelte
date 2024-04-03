@@ -107,11 +107,12 @@
 
 <section class="siteAbout">
     <p class="xl4-text-n">A collection of super good links from across the internet. This project brings together some of the best links on design, visual communciation, photography, digital culure and more, sharing articles, websites, tools and software to inform and inspire. Super~Goods is a completly open source project, from the code to the content, everything is freely availble online. Powered by Are.na, you can choose to follow the channel, fork a copy of the site and create your own super good site to share you links and create you own version of this project, you can find the full code for this project over on GitHub. Super~Goods also has a newsletter, delivering the latest picks directly to your inbox, so if you prefer to keep updated that way, please consider joining.</p>
-    <p><a href="https://www.are.na/james-wrigley-1496425668/super-goods-lhev24-ol-y">Are.na</a></p>
-    <p><a href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
-    <p><a href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
-    <p><a href="https://www.threads.net/@supergoods.today">Threads</a></p>
-    <p><a href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></p>
+    <br>
+    <p class="base-text-n"><a href="https://www.are.na/james-wrigley-1496425668/super-goods-lhev24-ol-y">Are.na</a></p>
+    <p class="base-text-n"><a href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
+    <p class="base-text-n"><a href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
+    <p class="base-text-n"><a href="https://www.threads.net/@supergoods.today">Threads</a></p>
+    <p class="base-text-n"><a href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></p>
 </section>
 
 {:else}
