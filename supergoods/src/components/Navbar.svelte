@@ -1,3 +1,7 @@
+<script>
+    import { Link } from 'svelte-routing';
+</script>
+
 <style>
     /* Page Styling */
     .siteNav {
