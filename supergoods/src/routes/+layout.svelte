@@ -1,3 +1,9 @@
+<Meta/>
+
+<script>
+    import Meta from "../components/Meta.svelte";
+</script>
+
 <style>
     @font-face {
         font-family: 'Junicode';
