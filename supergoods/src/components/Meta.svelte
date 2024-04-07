@@ -1,8 +1,7 @@
 <script>
-    import workmark from '$lib/assets/Wordmark.png';
     const title = 'Super~Goods';
     const description = 'A collection of super good links from across the Internet.';
-    const imageUrl = {workmark};
+    const imageUrl = '/Wordmark.png';
 </script>
 
 <svelte:head>
