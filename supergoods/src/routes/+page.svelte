@@ -1,5 +1,7 @@
-<script>
+<Meta/>
+<script>    
     import Navbar from "../components/Navbar.svelte";
+    import Meta from "../components/Meta.svelte";
 
     import { onMount } from 'svelte';
     let allData = [];
