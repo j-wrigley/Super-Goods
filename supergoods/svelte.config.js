@@ -14,6 +14,5 @@ export default {
 	preprocess: [
 		preprocess(),
 	  ],
-	  preprocess: preprocess(),
 	  extensions: ['.svelte'],
 };
