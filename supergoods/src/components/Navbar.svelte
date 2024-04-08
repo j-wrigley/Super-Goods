@@ -26,5 +26,5 @@
 <div class="siteNav base-text-n">
     <button class="navButton"><a href="/">Home</a></button>
     <button class="navButton"><a href="/information">Information</a></button>
-    <!-- <button class="navButton"><a href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></button> -->
+    <button class="navButton"><a href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></button>
 </div>
