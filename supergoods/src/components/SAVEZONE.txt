@@ -133,9 +133,7 @@
 </div>
 
 <!-- Site Navbar -->
-<div class="site-navbar-home">
-    <Navbar/>
-</div>
+<Navbar/>
 
 <!-- Site Header -->
 <section class="site-header">
@@ -197,6 +195,9 @@
                                     <span on:click={() => handleItemClick(item)}>{idx + 1}. {item.title ?? 'Untitled Item'}</span>
                                     {#if item.source && item.source.url}
                                         <span>: <a class="clear-link" target="_blank" rel="noopener noreferrer" href="{item.source.url ?? 'No Url'}">Source</a></span>
+                                    {/if}
+                                    {#if item.class}
+                                        <span>: {item.class ?? 'No Class'}</span>
                                     {/if}
                                 </div>
                             </div>

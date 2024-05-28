@@ -4,12 +4,13 @@
 
 <style>
     /* Page Styling */
-    .siteNav {
+    .site-navbar {
         display: flex;
         padding-bottom: 12px;
-        border-bottom: 0.5px solid;
+        justify-content: space-between;
     }
-    .navButton {
+    .nav-button {
+        text-transform: uppercase;
         background-color: transparent;
         color: inherit;
         border: none;
@@ -21,10 +22,27 @@
         text-align: left;
         text-decoration: none;
     }
+    /* ============ Media Screen Sizes ============ */
+    @media only screen and (max-width: 680px) {
+        .site-navbar {
+            flex-wrap: wrap;
+        }
+        .nav-button {
+            padding: 0px;
+            font-size: 80%;
+        }
+        .site-navbar:last-child {
+            margin-left: auto;
+        }
+        .site-navbar:last-child a {
+            padding-right: 0px !important;
+        }
+    }
 </style>
 
-<div class="siteNav base-text-n">
-    <button class="navButton"><a href="/">Home</a></button>
-    <button class="navButton"><a href="/information">Information</a></button>
-    <button class="navButton"><a href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></button>
+<div class="site-navbar juni-18">
+    <button class="nav-button"><a class="clear-link" href="/">Home</a></button>
+    <button class="nav-button"><a class="clear-link" href="/information">Information</a></button>
+    <button class="nav-button"><a class="clear-link" href="/moodboard">Moodbaord</a></button>
+    <button class="nav-button"><a class="clear-link" href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></button>
 </div>
