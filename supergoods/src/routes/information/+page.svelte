@@ -84,6 +84,9 @@
 
 
     {#each data.contents as content}
+        {#if content.title}
+            <p class="site-info-content-title juni-18">{content.title}</p>
+        {/if}
         {#if content.content_html}
             <div class="site-info-content juni-18">
                 {@html content.content_html}

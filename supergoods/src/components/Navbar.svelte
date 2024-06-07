@@ -29,7 +29,7 @@
         }
         .nav-button {
             padding: 0px;
-            font-size: 80%;
+            font-size: 90%;
         }
         .site-navbar:last-child {
             margin-left: auto;
@@ -40,7 +40,7 @@
     }
 </style>
 
-<div class="site-navbar juni-18">
+<div class="site-navbar juni-14">
     <button class="nav-button"><a class="clear-link" href="/">Home</a></button>
     <button class="nav-button"><a class="clear-link" href="/information">Information</a></button>
     <button class="nav-button"><a class="clear-link" href="/moodboard">Moodbaord</a></button>

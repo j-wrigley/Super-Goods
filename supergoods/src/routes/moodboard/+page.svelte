@@ -12,7 +12,7 @@
     let hoveredItem = null; // Track the hovered item for displaying details
     let showMobilePopup = false; // Track the state of the mobile pop-up
 
-    const ITEMS_PER_PAGE = 50; // Request a larger number of items
+    const ITEMS_PER_PAGE = 100; // Request a larger number of items
     const DISPLAY_ITEMS = 10; // Number of items to display on the moodboard
 
     function shuffleArray(array) {
@@ -280,7 +280,9 @@
         pointer-events: none;
         text-align: left;
     }
-
+    .cardButtonInfo {
+        padding: 8px;
+    }
     .mobile-popup.active {
         opacity: 1;
         pointer-events: auto;
@@ -298,7 +300,7 @@
     }
     .channel-info {
         position: fixed;
-        bottom: 18px;
+        bottom: 8px;
         left: 18px;
     }
     .channel-info h2 {
@@ -388,6 +390,6 @@
 {#if showMobilePopup}
     <div class="mobile-popup active" transition:fly={{ y: -20, duration: 200 }}>
         <button id="cardButton" class="close-button juni-18" on:click={closeMobilePopup}>Close</button>
-        <p class="juni-18">This works better on the desktop. Drag the images on the page or tap to reveal the information, refresh the page for a new daily moodboard.</p>
+        <p class="cardButtonInfo juni-14">This page is optimised for desktop use. You can drag the images to organise your daily board, click on an image for more information and its source, or refresh the page to see a new daily board based on this month’s theme.</p>
     </div>
 {/if}
