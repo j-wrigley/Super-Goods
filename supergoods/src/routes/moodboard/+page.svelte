@@ -233,7 +233,6 @@
         overflow: scroll;
         background-color: var(--houseGrey);
         padding: 0px 8px 8px 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: opacity 0.3s ease;
         opacity: 0;
         pointer-events: none;
@@ -273,8 +272,7 @@
         width: 80%;
         max-width: 300px;
         background-color: var(--houseGrey);
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 8px 20px 20px 20px;
         transition: opacity 0.3s ease;
         opacity: 0;
         pointer-events: none;
@@ -300,8 +298,8 @@
     }
     .channel-info {
         position: fixed;
-        bottom: 8px;
-        left: 18px;
+        bottom: 18px;
+        left: 20px;
     }
     .channel-info h2 {
         text-transform: uppercase;

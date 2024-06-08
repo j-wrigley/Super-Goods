@@ -142,9 +142,6 @@
     <div class="site-title">
         <p>{channel.title}</p>
     </div>
-    <div class="site-navbar">
-        <!-- Add Nav Bar -->
-    </div>
 </section>
 <!-- / Site Header -->
 

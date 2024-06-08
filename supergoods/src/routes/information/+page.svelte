@@ -10,6 +10,12 @@
     let isLoading = false;
     let allDataLoaded = false;
 
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString(undefined, options);
+    }
+
     async function fetchData(page) {
         if (allDataLoaded || isLoading) return;
         isLoading = true;
@@ -82,30 +88,39 @@
         <Navbar/>
     </div>
 
+    <section class="site-info-header">
+        <div class="site-title">
+            <p>Super~Goods</p>
+        </div>
+    </section>
 
-    {#each data.contents as content}
-        {#if content.title}
-            <p class="site-info-content-title juni-18">{content.title}</p>
-        {/if}
-        {#if content.content_html}
-            <div class="site-info-content juni-18">
-                {@html content.content_html}
-            </div>
-        {/if}
-    {/each}
+    <section class="flex-container" style="position: relative;">
+        <section class="">
+            {#each data.contents as content}
+                {#if content.title}
+                    <p class="site-info-content-title juni-18">{content.title}</p>
+                {/if}
+                {#if content.content_html}
+                    <div class="site-info-content juni-18">
+                        {@html content.content_html}
+                    </div>
+                {/if}
+            {/each}
+        </section>
+        <section class="juni-14 flex-item flex-container site-info-tags">
+            <p class="flex-item">Site : V2</p>
+            <p class="flex-item"><a class="clear-link" href="https://www.are.na/james-wrigley-1496425668/super-goods-lhev24-ol-y">Are.na</a></p>
+            <p class="flex-item"><a class="clear-link" href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
+            <p class="flex-item"><a class="clear-link" href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
+            <p class="flex-item"><a class="clear-link" href="https://www.threads.net/@supergoods.today">Threads</a></p>
+            <p class="flex-item"><a class="clear-link" href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></p>
+        </section>
+    </section>
 
     {:else}
         <p class="juni-18">Loading...</p>
     {/if}
 </div>
-
-<section class="site-info-links juni-18">
-    <p class=""><a class="clear-link" href="https://www.are.na/james-wrigley-1496425668/super-goods-lhev24-ol-y">Are.na</a></p>
-    <p class=""><a class="clear-link" href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
-    <p class=""><a class="clear-link" href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
-    <p class=""><a class="clear-link" href="https://www.threads.net/@supergoods.today">Threads</a></p>
-    <p class=""><a class="clear-link" href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></p>
-</section>
 
 {:else}
     <p>Loading...</p>
