@@ -5,7 +5,7 @@
     import Navbar from '../../components/Navbar.svelte';
     import { fly } from 'svelte/transition';
 
-    let mainChannelSlug = "photography-index-ridpdccmyfq"; // Replace this with the actual main channel slug
+    let mainChannelSlug = "the-photography-index"; // Replace this with the actual main channel slug
     let channel = { contents: [], title: '', description: '' }; // This will store data fetched during initial mount
     let loading = true; // Track loading state
     let zIndexCounter = 1; // Track the z-index value
@@ -231,8 +231,9 @@
         width: 300px;
         max-height: 360px;
         overflow: scroll;
-        background-color: var(--houseGrey);
-        padding: 0px 8px 8px 8px;
+        border: 0.5px solid;
+        background: var(--houseWhite); /* Optional: Add a background color */
+        padding: 0px 18px 18px 18px;
         transition: opacity 0.3s ease;
         opacity: 0;
         pointer-events: none;
@@ -271,7 +272,7 @@
         transform: translate(-50%, -50%);
         width: 80%;
         max-width: 300px;
-        background-color: var(--houseGrey);
+        background: var(--houseWhite); /* Optional: Add a background color */
         padding: 8px 20px 20px 20px;
         transition: opacity 0.3s ease;
         opacity: 0;
