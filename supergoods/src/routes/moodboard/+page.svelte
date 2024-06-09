@@ -302,6 +302,9 @@
         bottom: 18px;
         left: 20px;
     }
+    .channel-info p {
+        padding-right: 20px;
+    }
     .channel-info h2 {
         text-transform: uppercase;
         padding-bottom: 4px;
@@ -320,7 +323,7 @@
 
         {#if channel.contents.length > 0}
             <div class="channel-info juni-14">
-                <h2>Theme : {channel.title}</h2>
+                <h2>This Month's Theme : {channel.title}</h2>
                 <p>{channel.description}</p>
             </div>
         {/if}
