@@ -109,7 +109,7 @@
         </section>
         <section class="juni-14 flex-item flex-container site-info-tags">
             <p class="flex-item">Site : V2</p>
-            <p class="flex-item"><a class="clear-link" href="https://www.are.na/james-wrigley-1496425668/super-goods-lhev24-ol-y">Are.na</a></p>
+            <p class="flex-item"><a class="clear-link" href="https://www.are.na/james-wrigley-1496425668/super-goods-t2eow_bye1u">Are.na</a></p>
             <p class="flex-item"><a class="clear-link" href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
             <p class="flex-item"><a class="clear-link" href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
             <p class="flex-item"><a class="clear-link" href="https://www.threads.net/@supergoods.today">Threads</a></p>
