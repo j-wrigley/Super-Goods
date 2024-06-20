@@ -354,7 +354,7 @@
 {#if hoveredItem}
     <!-- Add the transition with fly -->
     <div class="hover-card active" transition:fly={{ y: 20, duration: 200 }}>
-        <button id="cardButton" class="close-button juni-18" on:click={closeCard}>Close</button>
+        <button id="cardButton" class="close-button juni-18" on:click={closeCard}>CLOSE</button>
         <div class="details-header">
             {#if hoveredItem.title}
                 <span id="title">{hoveredItem.title ?? 'No Description'}</span>
@@ -391,7 +391,7 @@
 
 {#if showMobilePopup}
     <div class="mobile-popup active" transition:fly={{ y: -20, duration: 200 }}>
-        <button id="cardButton" class="close-button juni-18" on:click={closeMobilePopup}>Close</button>
+        <button id="cardButton" class="close-button juni-18" on:click={closeMobilePopup}>CLOSE</button>
         <p class="cardButtonInfo juni-14">This page is optimised for desktop use. You can drag the images to organise your daily board, click on an image for more information and its source, or refresh the page to see a new daily board based on this month’s theme.</p>
     </div>
 {/if}
