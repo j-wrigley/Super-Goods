@@ -150,6 +150,7 @@
         opacity: 1; /* Set transparency (for mouse-over effects on hover) */
         -webkit-transition: .2s; /* 0.2 seconds transition on hover */
         transition: opacity .2s;
+        cursor: pointer;
     }
     #image-size-slider::-webkit-slider-thumb {
         -webkit-appearance: none;  /* Override default CSS styles */
@@ -161,6 +162,7 @@
         opacity: 1; /* Set transparency (for mouse-over effects on hover) */
         -webkit-transition: .2s; /* 0.2 seconds transition on hover */
         transition: opacity .2s;
+        cursor: pointer;
     }
     .buttons-container {
         display: flex;
@@ -338,8 +340,8 @@
                 </div>
                 {#if hasMoreItems}
                     <button id="buttonMain" class="juni-18" on:click={() => loadMore(selectedChannelData.slug)}>
-                        {#if loadingItems} Fetching More {/if}
-                        {#if !loadingItems} Load More {/if}
+                        {#if loadingItems} FETCHING MORE {/if}
+                        {#if !loadingItems} LOAD MORE {/if}
                     </button>
                 {/if}
             </div>
@@ -350,8 +352,8 @@
     <div class="channel-load-more-button">
         {#if hasMoreChannels}
             <button id="buttonMain" class="juni-18" on:click={loadMoreChannels}>
-                {#if loadingMoreChannels} Fetching More {/if}
-                {#if !loadingMoreChannels} Load More Channels {/if}
+                {#if loadingMoreChannels} FETCHING MORE {/if}
+                {#if !loadingMoreChannels} LOAD MORE CHANNELS {/if}
             </button>
         {/if}
     </div>

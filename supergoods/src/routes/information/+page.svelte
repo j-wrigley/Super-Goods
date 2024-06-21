@@ -107,13 +107,13 @@
                 {/if}
             {/each}
         </section>
-        <section class="juni-14 flex-item flex-container site-info-tags">
-            <p class="flex-item">Site : V2</p>
-            <p class="flex-item"><a class="clear-link" href="https://www.are.na/james-wrigley-1496425668/super-goods-t2eow_bye1u">Are.na</a></p>
-            <p class="flex-item"><a class="clear-link" href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
-            <p class="flex-item"><a class="clear-link" href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
-            <p class="flex-item"><a class="clear-link" href="https://www.threads.net/@supergoods.today">Threads</a></p>
-            <p class="flex-item"><a class="clear-link" href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></p>
+        <section class="juni-14 site-info-flex-item flex-container site-info-tags">
+            <p class="site-info-flex-item">Site : V2</p>
+            <p class="site-info-flex-item"><a class="clear-link" href="https://www.are.na/james-wrigley-1496425668/super-goods-t2eow_bye1u">Are.na</a></p>
+            <p class="site-info-flex-item"><a class="clear-link" href="https://github.com/j-wrigley/Super-Goods">GitHub</a></p>
+            <p class="site-info-flex-item"><a class="clear-link" href="https://www.instagram.com/supergoods.today/">Instagram</a></p>
+            <p class="site-info-flex-item"><a class="clear-link" href="https://www.threads.net/@supergoods.today">Threads</a></p>
+            <p class="site-info-flex-item"><a class="clear-link" href="https://super-goods.beehiiv.com/subscribe">Newsletter</a></p>
         </section>
     </section>
 

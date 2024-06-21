@@ -92,7 +92,7 @@ body {
     border-left: 0px;
     border-bottom: 0px;
     padding: 12px;
-    margin: 24px 8px 24px 8px;
+    margin: 34px 8px 34px 8px;
     width: 100%;
     cursor: pointer;}
 #buttonMain:hover::after {
@@ -126,8 +126,9 @@ body {
     gap: 8px;
     width: 100%;
     box-sizing: border-box;}
-/* .flex-item {
-    flex: 1 1 200px;} */
+.site-info-flex-item {
+    flex: 1 1 200px !important;
+}
 .card-flex-container {
     display: flex;
     width: 100%;
@@ -185,7 +186,7 @@ a {
     text-transform: uppercase;}
 .site-info-tags {
     position: sticky;
-    top: 200px;
+    top: 100px;
     padding-left: 60px;
     text-align: right;
     gap: 96px;
@@ -218,7 +219,9 @@ a {
 .channel-load-more-button {}
 
 /* ============ Selected Channel / Blocks ============ */
-.selected-channel-container {}
+.selected-channel-container {
+    padding-bottom: 128px;
+}
 .selected-channel-header {
     display: flex;
     justify-content: space-between;
@@ -358,6 +361,8 @@ a {
 /* ============ List and Grid View Styles ============ */
 .list-view .selected-channel-content {
     display: block;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .list-view .block {
@@ -367,6 +372,11 @@ a {
     border-bottom: 0.5px solid var(--houseRed);
     padding: 0px;
     max-width: 100%;
+}
+
+
+.list-view .block:hover {
+    opacity: 0.5;
 }
 
 .list-view .block-title {

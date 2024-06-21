@@ -5,15 +5,15 @@
     import Navbar from '../../components/Navbar.svelte';
     import { fly } from 'svelte/transition';
 
-    let mainChannelSlug = "the-photography-index"; // Replace this with the actual main channel slug
-    let channel = { contents: [], title: '', description: '' }; // This will store data fetched during initial mount
-    let loading = true; // Track loading state
-    let zIndexCounter = 1; // Track the z-index value
-    let hoveredItem = null; // Track the hovered item for displaying details
-    let showMobilePopup = false; // Track the state of the mobile pop-up
+    let mainChannelSlug = "the-photography-index"; 
+    let channel = { contents: [], title: '', description: '' }; 
+    let loading = true; 
+    let zIndexCounter = 1; 
+    let selectedItem = null; 
+    let showMobilePopup = false; 
 
-    const ITEMS_PER_PAGE = 100; // Request a larger number of items
-    const DISPLAY_ITEMS = 10; // Number of items to display on the moodboard
+    const ITEMS_PER_PAGE = 100; 
+    const DISPLAY_ITEMS = 10; 
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -31,23 +31,42 @@
     });
 
     async function loadMoodboardBlocks() {
-        loading = true; // Start loading
-        const initialData = await fetchData(mainChannelSlug, ITEMS_PER_PAGE, 1); // Fetch initial data for the main channel
-        console.log("Initial Data", initialData); // Log the initial data to the console for debugging
-        if (initialData.contents) {
-            // Shuffle the data and select a subset to display
-            channel.contents = shuffleArray(initialData.contents)
-                .slice(0, DISPLAY_ITEMS)
-                .map(item => {
-                    item.x = Math.random() * 80 + 'vw';
-                    item.y = Math.random() * 80 + 'vh';
-                    item.zIndex = zIndexCounter++;
-                    return item;
-                });
-            channel.title = initialData.title; // Set the title property
-            channel.description = initialData.metadata.description; // Set the description property
+        loading = true; 
+        let allContents = [];
+        let page = 1;
+        let morePages = true;
+        let channelData = null;
+
+        // Fetch all pages of content
+        while (morePages) {
+            const data = await fetchData(mainChannelSlug, ITEMS_PER_PAGE, page);
+            if (data.contents && data.contents.length > 0) {
+                allContents = allContents.concat(data.contents);
+                page++;
+                if (!channelData) {
+                    channelData = data;
+                }
+            } else {
+                morePages = false;
+            }
         }
-        loading = false; // End loading
+
+        if (channelData) {
+            channel.title = channelData.title; 
+            channel.description = channelData.metadata.description; 
+        }
+
+        // Shuffle and select a random subset
+        channel.contents = shuffleArray(allContents)
+            .slice(0, DISPLAY_ITEMS)
+            .map(item => {
+                item.x = Math.random() * 80 + 'vw';
+                item.y = Math.random() * 80 + 'vh';
+                item.zIndex = zIndexCounter++;
+                return item;
+            });
+
+        loading = false; 
     }
 
     function setViewportHeight() {
@@ -86,7 +105,8 @@
     }
 
     function handleTouchStart(event, item) {
-        event.preventDefault(); // Prevent default touch actions
+        if (event.target.classList.contains('icon-overlay')) return; // Ignore if clicking on the icon
+        event.preventDefault(); 
         initialX = event.touches[0].clientX;
         initialY = event.touches[0].clientY;
         startDrag(event.touches[0], item);
@@ -110,7 +130,7 @@
         const rect = element.getBoundingClientRect();
         offsetX = event.clientX - rect.left;
         offsetY = event.clientY - rect.top;
-        item.zIndex = zIndexCounter++; // Update the z-index to bring the item to the top
+        item.zIndex = zIndexCounter++; 
     }
 
     function moveElement(clientX, clientY) {
@@ -120,9 +140,8 @@
         let newX = clientX - offsetX;
         let newY = clientY - offsetY;
 
-        // Constrain within the bounds of the container
-        newX = Math.max(0, Math.min(newX, containerRect.width - 150)); // assuming 150px width for the item
-        newY = Math.max(0, Math.min(newY, containerRect.height - 150)); // assuming 150px height for the item
+        newX = Math.max(0, Math.min(newX, containerRect.width - 150)); 
+        newY = Math.max(0, Math.min(newY, containerRect.height - 150)); 
 
         draggingElement.x = newX + 'px';
         draggingElement.y = newY + 'px';
@@ -146,26 +165,17 @@
         }
     }
 
-    function handleMouseEnter(item) {
-        hoveredItem = item;
-    }
-
-    function handleMouseLeave() {
-        // Do nothing, keep the card visible until a new item is hovered
-    }
-
-    function handleTouchEndForHover(event, item) {
-        event.preventDefault();
-        hoveredItem = item;
+    function showDetails(item) {
+        selectedItem = item;
     }
 
     function closeCard(event) {
-        event.stopPropagation(); // Prevent the click event from bubbling up to the card's container
-        hoveredItem = null;
+        event.stopPropagation(); 
+        selectedItem = null;
     }
 
     function closeMobilePopup(event) {
-        event.stopPropagation(); // Prevent the click event from bubbling up to the popup's container
+        event.stopPropagation(); 
         showMobilePopup = false;
     }
 
@@ -190,9 +200,9 @@
         top: 0;
         left: 0;
         width: 100vw;
-        height: calc(var(--vh, 1vh) * 100); /* Use the calculated viewport height */
+        height: calc(var(--vh, 1vh) * 100); 
         overflow: hidden;
-        background: var(--houseWhite); /* Optional: Add a background color */
+        background: var(--houseWhite); 
     }
 
     .moodboard-item {
@@ -200,7 +210,7 @@
         width: 150px;
         height: auto;
         cursor: grab;
-        user-select: none; /* Prevent text selection while dragging */
+        user-select: none; 
     }
 
     .moodboard-item:active {
@@ -213,6 +223,31 @@
         object-fit: cover;
     }
 
+    .icon-overlay {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: var(--houseRed);
+        border-radius: 0px;
+        width: 16px;
+        height: 16px;
+        display: none; /* Hide by default */
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .icon-overlay i {
+        position: relative;
+        top: 1px;
+        line-height: 0;
+        color: var(--houseWhite);
+    }
+
+    .moodboard-item:hover .icon-overlay {
+        display: flex; /* Show on hover */
+    }
+
     .loading-moodboard {
         position: fixed;
         top: 45%;
@@ -223,7 +258,6 @@
         z-index: 999;
     }
 
-    /* Styles for the card */
     .hover-card {
         position: fixed;
         bottom: 8px;
@@ -232,7 +266,7 @@
         max-height: 360px;
         overflow: scroll;
         border: 0.5px solid;
-        background: var(--houseWhite); /* Optional: Add a background color */
+        background: var(--houseWhite); 
         padding: 0px 18px 18px 18px;
         transition: opacity 0.3s ease;
         opacity: 0;
@@ -264,24 +298,26 @@
         right: 10px;
     }
 
-    /* Styles for the mobile popup */
     .mobile-popup {
         position: fixed;
         top: 25%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80%;
+        border: 0.5px solid;
         max-width: 300px;
-        background: var(--houseWhite); /* Optional: Add a background color */
+        background: var(--houseWhite); 
         padding: 8px 20px 20px 20px;
         transition: opacity 0.3s ease;
         opacity: 0;
         pointer-events: none;
         text-align: left;
     }
+
     .cardButtonInfo {
         padding: 8px;
     }
+
     .mobile-popup.active {
         opacity: 1;
         pointer-events: auto;
@@ -297,14 +333,17 @@
         top: 10px;
         right: 10px;
     }
+
     .channel-info {
         position: fixed;
         bottom: 18px;
         left: 20px;
     }
+
     .channel-info p {
         padding-right: 20px;
     }
+
     .channel-info h2 {
         text-transform: uppercase;
         padding-bottom: 4px;
@@ -337,53 +376,52 @@
                 style="top: {item.y}; left: {item.x}; z-index: {item.zIndex};"
                 on:mousedown={(event) => handleMouseDown(event, item)}
                 on:touchstart={(event) => handleTouchStart(event, item)}
-                on:mouseenter={() => handleMouseEnter(item)}
-                on:mouseleave={handleMouseLeave}
-                on:touchend={(event) => handleTouchEndForHover(event, item)}
             >
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
                 {#if item.image && item.image.display && item.image.display.url}
                     <img src="{item.image.display.url}" alt="">
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <div class="juni-14 icon-overlay" on:click={() => showDetails(item)}>
+                        <i>i</i>
+                    </div>
                 {/if}
             </div>
         {/each}
     </section>
 {/if}
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-{#if hoveredItem}
-    <!-- Add the transition with fly -->
+{#if selectedItem}
     <div class="hover-card active" transition:fly={{ y: 20, duration: 200 }}>
         <button id="cardButton" class="close-button juni-18" on:click={closeCard}>CLOSE</button>
         <div class="details-header">
-            {#if hoveredItem.title}
-                <span id="title">{hoveredItem.title ?? 'No Description'}</span>
+            {#if selectedItem.title}
+                <span id="title">{selectedItem.title ?? 'No Description'}</span>
             {/if}
-            {#if hoveredItem.source && hoveredItem.source.url}
-                <span id="title"> : <a class="clear-link" target="_blank" rel="noopener noreferrer" href="{hoveredItem.source.url}">Source</a></span>
+            {#if selectedItem.source && selectedItem.source.url}
+                <span id="title"> : <a class="clear-link" target="_blank" rel="noopener noreferrer" href="{selectedItem.source.url}">Source</a></span>
             {/if}
         </div>
         <div class="details-content">
-            {#if hoveredItem.content_html}
-                <p class="juni-16" id="content">{@html hoveredItem.content_html}</p>
+            {#if selectedItem.content_html}
+                <p class="juni-16" id="content">{@html selectedItem.content_html}</p>
             {/if}
-            {#if hoveredItem.description_html}
-                <p class="juni-16" id="description">{@html hoveredItem.description_html ?? 'No Description'}</p>
+            {#if selectedItem.description_html}
+                <p class="juni-16" id="description">{@html selectedItem.description_html ?? 'No Description'}</p>
             {/if}
         </div>
         <div class="details-tags card-flex-container">
-            {#if hoveredItem.created_at}
-                <p id="tag" class="card-flex-item">{formatDate(hoveredItem.created_at)}</p>
+            {#if selectedItem.created_at}
+                <p id="tag" class="card-flex-item">{formatDate(selectedItem.created_at)}</p>
             {/if}
-            {#if hoveredItem.class}
-                <p id="tag" class="card-flex-item">{hoveredItem.class}</p>
+            {#if selectedItem.class}
+                <p id="tag" class="card-flex-item">{selectedItem.class}</p>
             {/if}
 
-            {#if hoveredItem.attachment && hoveredItem.attachment.file_size_display}
-                <p id="tag">{hoveredItem.attachment.file_size_display}</p>
+            {#if selectedItem.attachment && selectedItem.attachment.file_size_display}
+                <p id="tag">{selectedItem.attachment.file_size_display}</p>
             {/if}
-            {#if hoveredItem.attachment && hoveredItem.attachment.extension}
-                <p id="tag">{hoveredItem.attachment.extension}</p>
+            {#if selectedItem.attachment && selectedItem.attachment.extension}
+                <p id="tag">{selectedItem.attachment.extension}</p>
             {/if}
         </div>
     </div>
